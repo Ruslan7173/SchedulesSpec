@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список специалистов поликлиники</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Список специалистов поликлиники</h1>
+<table>
+    <tr>
+        <th>
+            <a href="/specialist-schedule">
+                <input type="checkbox"> Врачи специалисты
+            </a>
+        </th>
+
+    </tr>
+    <tr>
+        <th>
+            <a href="/pediatrician-schedule">
+                <input type="checkbox"> Врачи-участковые педиаторы
+            </a>
+        </th>
+
+    </tr>
+    <tr>
+        <th>
+            <a href="/pediatric_sections">
+                <input type="checkbox"> Перечень педиатрических участков
+            </a>
+        </th>
+
+    </tr>
+    <tr>
+        <th>
+            <a href="/working-hours">
+                <input type="checkbox"> Режим работы поликлиники
+            </a>
+        </th>
+
+    </tr>
+</table>
+<button onclick="location.href='/'">Назад</button> к  списку специалистов поликлиники
+</body>
+</html>
