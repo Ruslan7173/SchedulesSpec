@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>дописать</title>
+    <title>Режим работы поликлиники</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-
+<h1>Режим работы поликлиники</h1>
+<table>
+    <tr>
+        <th>День</th>
+        <th>Время работы</th>
+    </tr>
+    <tr>
+        <td>Понедельник – Пятница</td>
+        <td>с 8:00 до 20:00</td>
+    </tr>
+    <tr>
+        <td>Суббота</td>
+        <td>с 9:00 до 15:00 (участковая служба)</td>
+    </tr>
+    <tr>
+        <td>Воскресенье</td>
+        <td>с 9:00 до 15:00 (участковая служба)</td>
+    </tr>
+</table>
+<button onclick="location.href='/specialist-schedule'">Назад к списку специалистов поликлиники</button>
 </body>
 </html>

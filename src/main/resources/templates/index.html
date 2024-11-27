@@ -3,6 +3,25 @@
 <head>
     <title>Список специалистов поликлиники</title>
     <link rel="stylesheet" href="/styles.css">
+    <script>
+        function filterTable() {
+            // Получаем все строки таблицы
+            const rows = document.querySelectorAll('table tr');
+            // Перебираем все строки
+            rows.forEach((row, index) => {
+                // Пропускаем заголовки
+                //if (index === 0) return;
+                // Находим чекбокс в текущей строке
+                const checkbox = row.querySelector('input[type="checkbox"]');
+                // Если чекбокс не отмечен, скрываем строку
+                if (!checkbox.checked) {
+                    row.style.display = 'none';
+                } else {
+                    row.style.display = ''; // Показываем строку
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <h1>Список специалистов поликлиники</h1>
@@ -13,7 +32,6 @@
                 <input type="checkbox"> Врачи специалисты
             </a>
         </th>
-
     </tr>
     <tr>
         <th>
@@ -21,7 +39,6 @@
                 <input type="checkbox"> Врачи-участковые педиаторы
             </a>
         </th>
-
     </tr>
     <tr>
         <th>
@@ -29,17 +46,30 @@
                 <input type="checkbox"> Перечень педиатрических участков
             </a>
         </th>
-
-    </tr>
-    <tr>
-        <th>
-            <a href="/working-hours">
-                <input type="checkbox"> Режим работы поликлиники
-            </a>
-        </th>
-
     </tr>
 </table>
-<button onclick="location.href='/'">Назад</button> к  списку специалистов поликлиники
+<button onclick="filterTable()">Выбор по "галочке"</button> Кнопка для фильтрации
+<button onclick="location.href='/'">Назад</button> к списку специалистов поликлиники
+
+<h1>Режим работы поликлиники</h1>
+<table>
+    <tr>
+        <th>День</th>
+        <th>Время работы</th>
+    </tr>
+    <tr>
+        <td>Понедельник – Пятница</td>
+        <td>с 8:00 до 20:00</td>
+    </tr>
+    <tr>
+        <td>Суббота</td>
+        <td>с 9:00 до 15:00 (участковая служба)</td>
+    </tr>
+    <tr>
+        <td>Воскресенье</td>
+        <td>с 9:00 до 15:00 (участковая служба)</td>
+    </tr>
+</table>
+
 </body>
 </html>

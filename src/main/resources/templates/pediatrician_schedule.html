@@ -3,9 +3,81 @@
 <head>
     <title>Расписание врачей-участковых педиаторов</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        input[type="text"] {
+            margin-bottom: 15px;
+            padding: 5px;
+            width: 100%;
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
+
+        /* Стили для изображения */
+        .header-image {
+            width: 100%; /* Ширина картинки растягивается по ширине страницы */
+            max-width: 600px; /* Максимальная ширина картинки */
+            height: auto; /* Автоматическая высота для сохранения пропорций */
+            display: block;
+            margin: 0 auto 20px; /* Центрирование и отступ снизу */
+        }
+    </style>
+    <script>
+        function searchByName() {
+            const input = document.getElementById("nameSearch");
+            const filter = input.value.toLowerCase();
+            const table = document.querySelector("table tbody");
+            const rows = table.getElementsByTagName("tr");
+
+            for (let i = 0; i < rows.length; i++) {
+                const nameCell = rows[i].getElementsByTagName("td")[1]; // Столбец с Ф.И.О.
+                if (nameCell) {
+                    const textValue = nameCell.textContent || nameCell.innerText;
+                    // Сбрасываем предыдущую подсветку
+                    nameCell.innerHTML = nameCell.innerHTML.replace(/<mark class="highlight">|<\/mark>/g, '');
+
+                    if (textValue.toLowerCase().indexOf(filter) > -1) {
+                        rows[i].style.display = ""; // Показываем строку
+                        // Подсветка совпадающего текста
+                        if (filter) {
+                            const regex = new RegExp(filter, 'gi');
+                            nameCell.innerHTML = textValue.replace(regex, (match) => `<mark class="highlight">${match}</mark>`);
+                        }
+                    } else {
+                        rows[i].style.display = "none"; // Скрываем строку
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body>
 <h1>Расписание врачей-участковых педиаторов</h1>
+
+<!-- Добавляем изображение -->
+<img src="/static/pediator.jpg" alt="Педиатр" class="header-image">
+
+<!-- Поле поиска -->
+<input
+        type="text"
+        id="nameSearch"
+        onkeyup="searchByName()"
+        placeholder="Введите Ф.И.О. для поиска..."
+        title="Введите Ф.И.О. для поиска"
+>
+
 <table>
     <tr>
         <th>Врач</th>
@@ -51,8 +123,8 @@
         <td>08.00-10.00</td>
         <td>13.00-17.00</td>
     </tr>
-    /tr>
 </table>
-<button onclick="location.href='/'">Назад</button> к  списку специалистов поликлиники
+
+<button onclick="location.href='/'">Назад</button> к списку специалистов поликлиники
 </body>
 </html>
