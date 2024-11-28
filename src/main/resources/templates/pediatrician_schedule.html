@@ -66,17 +66,11 @@
 <body>
 <h1>Расписание врачей-участковых педиаторов</h1>
 
-<!-- Добавляем изображение -->
-
-
 <!-- Поле поиска -->
-<input
-        type="text"
-        id="nameSearch"
-        onkeyup="searchByName()"
-        placeholder="Введите Ф.И.О. для поиска..."
-        title="Введите Ф.И.О. для поиска"
->
+<input type="text" id="nameSearch" onkeyup="searchByName()"
+       placeholder="Введите Ф.И.О. для поиска. Результат будет подсвечен желтым цветом"
+       style="margin-bottom: 20px;">
+<button onclick="location.href='/'">Назад</button> к списку специалистов поликлиники
 
 <table>
     <tr>
@@ -123,8 +117,30 @@
         <td>08.00-10.00</td>
         <td>13.00-17.00</td>
     </tr>
+    <tr>
+        <td>Врач-педиатр участковый</td>
+        <td>Иванова Галина Петровна</td>
+        <td>4 участок</td>
+        <td>214</td>
+        <td>8.00-14.00</td>
+        <td>14.00-17.00</td>
+        <td>11.00-14.00</td>
+        <td>15.00-17.00</td>
+        <td>17.00-20.00</td>
+    </tr>
+    <tr>
+        <td>Врач-педиатр участковый</td>
+        <td>Петрова Инна Александровна</td>
+        <td>5 участок</td>
+        <td>215</td>
+        <td>8.00-14.00</td>
+        <td>14.00-17.00</td>
+        <td>11.00-14.00</td>
+        <td>15.00-17.00</td>
+        <td>17.00-20.00</td>
+    </tr>
 </table>
+<img th:src="@{/doc_run.jpg}" alt="Педиатр" style="max-width: 15% ; height: auto;">
 
-<button onclick="location.href='/'">Назад</button> к списку специалистов поликлиники
 </body>
 </html>
