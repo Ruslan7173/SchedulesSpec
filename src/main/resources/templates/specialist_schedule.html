@@ -3,9 +3,64 @@
 <head>
     <title>Расписание врачей специалистов</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        .highlight {
+            background-color: yellow; /* Цвет подсветки */
+        }
+    </style>
+    <script>
+        function searchDoctor() {
+            // Получаем значение из поля поиска
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            // Получаем все строки таблицы
+            const rows = document.querySelectorAll('table tr');
+
+            // Перебираем все строки таблицы
+            rows.forEach((row, index) => {
+                // Пропускаем заголовок таблицы
+                if (index === 0) {
+                    return;
+                }
+
+                // Получаем имя врача и Ф.И.О. из текущей строки
+                const doctorName = row.cells[0].textContent.toLowerCase();
+                const fullName = row.cells[1].textContent.toLowerCase();
+
+                // Проверяем, содержится ли текст из поля поиска в имени врача или Ф.И.О.
+                const doctorMatch = doctorName.includes(input);
+                const nameMatch = fullName.includes(input);
+
+                if (doctorMatch || nameMatch) {
+                    row.style.display = ''; // Показываем строку
+
+                    // Подсветка совпадающего текста
+                    const originalDoctorText = row.cells[0].textContent;
+                    const originalFullNameText = row.cells[1].textContent;
+
+                    // Оборачиваем совпадающие части в span с классом highlight
+                    row.cells[0].innerHTML = highlightText(originalDoctorText, input);
+                    row.cells[1].innerHTML = highlightText(originalFullNameText, input);
+                } else {
+                    row.style.display = 'none'; // Скрываем строку
+                    row.cells[0].innerHTML = doctorName; // Убираем выделение
+                    row.cells[1].innerHTML = fullName; // Убираем выделение
+                }
+            });
+        }
+
+        function highlightText(text, search) {
+            if (!search) return text; // Если поиска нет, возвращаем оригинальный текст
+            const regex = new RegExp(`(${search})`, 'gi'); // Регулярное выражение для поиска
+            return text.replace(regex, '<span class="highlight">$1</span>'); // Оборачиваем совпадения в span
+        }
+    </script>
 </head>
 <body>
 <h1>Расписание врача специалиста</h1>
+
+<!-- Поле для поиска -->
+<input type="text" id="searchInput" onkeyup="searchDoctor()" placeholder="Поиск по врачу или Ф.И.О." style="margin-bottom: 20px;">
+
 <table>
     <tr>
         <th>Врач</th>
@@ -48,6 +103,7 @@
         <td>8.15-13.45</td>
     </tr>
 </table>
-<button onclick="location.href='/'">Назад</button> к  списку специалистов поликлиники
+
+<button onclick="location.href='/'">Назад</button> к списку специалистов поликлиники
 </body>
 </html>
